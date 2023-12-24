@@ -16,32 +16,35 @@ const fakeData = [
 const ControllerTable = () => {
 
   return (
-    <TableContainer component={Paper}>
-      <Table  aria-label="Controller Table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Activity</TableCell>
-            <TableCell align="right">last Year Realisation</TableCell>
-            <TableCell align="right">Provision</TableCell>
-            <TableCell align="right">Realization</TableCell>
-            <TableCell align="right">Ecart</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {fakeData.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell component="th" scope="row">
-                {row.activity}
-              </TableCell>
-              <TableCell align="right">{row.lastYearRealisation}</TableCell>
-              <TableCell align="right">{row.provision}</TableCell>
-              <TableCell align="right">{row.realization}</TableCell>
-              <TableCell align="right">{row.ecart}</TableCell>
+    <>
+        <div>Controller Table</div>
+        <TableContainer component={Paper}>
+        <Table  aria-label="Controller Table">
+            <TableHead>
+            <TableRow>
+                <TableCell>Activity</TableCell>
+                <TableCell align="right">last Year Realisation</TableCell>
+                <TableCell align="right">Provision</TableCell>
+                <TableCell align="right">Realization</TableCell>
+                <TableCell align="right">Ecart</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </TableHead>
+            <TableBody>
+            {fakeData.map((row, index) => (
+                <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                    {row.activity}
+                </TableCell>
+                <TableCell align="right">{row.lastYearRealisation}</TableCell>
+                <TableCell align="right">{row.provision}</TableCell>
+                <TableCell align="right">{row.realization}</TableCell>
+                <TableCell align="right">{row.ecart}</TableCell>
+                </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+    </>
   );
 };
 

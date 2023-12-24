@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 
 
 const fakeData = [
-  { month: 3 , year: 2023, activity: 'Purchase', realization: 180},
+  { department: 'Logistique', month: 3 , year: 2023, activity: 'Purchase', realization: 180},
 ];
 
 const ManagerTable = () => {
@@ -21,6 +21,7 @@ const ManagerTable = () => {
         <Table  aria-label="Manager Table">
           <TableHead>
             <TableRow>
+              <TableCell>department</TableCell>
               <TableCell>Activity</TableCell>
               <TableCell align="right">Annee</TableCell>
               <TableCell align="right">Mois</TableCell>
@@ -31,8 +32,9 @@ const ManagerTable = () => {
             {fakeData.map((row, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
-                  {row.activity}
+                  {row.department}
                 </TableCell>
+                <TableCell align="right">{row.activity}</TableCell>
                 <TableCell align="right">{row.year}</TableCell>
                 <TableCell align="right">{row.month}</TableCell>
                 <TableCell align="right">{row.realization}</TableCell>

@@ -14,7 +14,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { RealizationStatus, type Realization, Department } from './makeData';
+import { RealizationStatus, type Realization, Department, DRAFT_REALAZATION } from './makeData';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCreateRealization, useDeleteRealization, useGetRealizations, useUpdateRealization } from './realizationHooks';
@@ -26,6 +26,12 @@ const Example = () => {
 
   const columns = useMemo<MRT_ColumnDef<Realization>[]>(
     () => [
+      {
+        accessorKey: 'id',
+        header: 'id',
+        enableEditing: false,
+        size: 80,
+      },
       {
         accessorKey: 'department',
         header: 'Departement',
@@ -139,13 +145,8 @@ const Example = () => {
       <Button
         variant="contained"
         onClick={() => {
-          // Set default value for status to DRAFT
-          table.setCreatingRow(
-            createRow(table, {
-              //optionally pass in default values for the new row, useful for nested data or other complex scenarios
-              department: Department.LOGISTIQUE,
-              status: RealizationStatus.DRAFT,
-            } as Realization)
+          table.setCreatingRow( // Set default value for status to DRAFT
+            createRow(table, DRAFT_REALAZATION)
           );
         }}
       >

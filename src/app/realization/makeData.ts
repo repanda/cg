@@ -18,14 +18,7 @@ export type Realization = {
   status: RealizationStatus;
 };
 
-export const fakeData: Realization[] = [
-  {
-    id: '9s41rp',
-    department: Department.LOGISTIQUE,
-    activity: 'Achat',
-    month: 12,
-    year: 2023,
-    amount: 30_000_000,
-    status: RealizationStatus.DRAFT,
-  }
-];
+export const DRAFT_REALAZATION = {
+  department: Department.LOGISTIQUE,
+  status: RealizationStatus.DRAFT,
+} as Realization;

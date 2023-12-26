@@ -67,7 +67,7 @@ export function useUpdateRealization() {
         )
       );
     },
-    // onSettled: () => queryClient.invalidateQueries({ queryKey: ['realizations'] }), //refetch users after mutation, disabled for demo
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ['realizations'] }), //refetch Realizations after mutation
   });
 }
 
@@ -86,11 +86,11 @@ export function useDeleteRealization() {
         (prevRealizations: Realization[]) => prevRealizations.filter((realization) => realization.id !== realizationId)
       );
     },
-    // onSettled: () => queryClient.invalidateQueries({ queryKey: ['realizations'] }), //refetch realizations after mutation, disabled for demo
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ['realizations'] }), //refetch realizations after mutation
   });
 }
 
-//READ hook (get users from api)
+//READ hook (get Realizations from api)
 export function useGetRealizations() {
   return useQuery<Realization[]>({
     queryKey: ['realizations'],
@@ -98,6 +98,38 @@ export function useGetRealizations() {
       return repository.getAll();
     },
     refetchOnWindowFocus: false,
+  });
+}
+
+export function useSendRealization() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (realization: Realization) => {
+      // Check if the realization is in DRAFT status before sending it
+      if (realization.status !== RealizationStatus.DRAFT) {
+        throw new Error('Cannot send realization. It is not in DRAFT status.');
+      }
+      // Perform logic to check the realization before sending it
+      const updatedRealization: Realization = {
+        ...realization,
+        status: RealizationStatus.TO_BE_CONTROLLED,
+      };
+      await repository.update(updatedRealization);
+    },
+    //client side optimistic update
+    onMutate: (newRealizationInfo: Realization) => {
+      queryClient.setQueryData(
+        ['realizations'],
+        (prevRealizations: Realization[]) => prevRealizations?.map((prevRealization: Realization) => prevRealization.id === newRealizationInfo.id ? newRealizationInfo : prevRealization
+        )
+      );
+    },
+    onError: (error) => {
+      // Handle the error, e.g., show a notification
+      console.error('Mutation error:', error.message);
+    },
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ['realizations'] }), //refetch Realizations after mutation
   });
 }
 

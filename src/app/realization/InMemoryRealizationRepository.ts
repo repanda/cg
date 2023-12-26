@@ -1,9 +1,39 @@
 // inMemoryRealizationRepository.ts
-import { Realization, RealizationStatus } from './makeData';
+import { Department, Realization, RealizationStatus } from './makeData';
 import { RealizationRepository } from './realizationRepository';
 
 class InMemoryRealizationRepository implements RealizationRepository {
-  private realizations: Realization[] = [];
+ // private realizations: Realization[] = [];
+  private realizations: Realization[] = [
+    {
+      id: 'lqmu3vo7-hbpnah',
+      activity: 'Achat',
+      month: 12,
+      year: 2023,
+      amount: 30_000_000,
+      department: Department.LOGISTIQUE,
+      status: RealizationStatus.DRAFT,
+    },
+    {
+      id: 'lqmu3vo6-hbpnah',
+      activity: 'Achat',
+      month: 11,
+      year: 2023,
+      amount: 10_000_000,
+      department: Department.LOGISTIQUE,
+      status: RealizationStatus.TO_BE_CONTROLLED,
+    },
+    {
+      id: 'lqmu3vo5-hbpnah',
+      activity: 'Achat',
+      month: 10,
+      year: 2023,
+      amount: 15_000_000,
+      department: Department.LOGISTIQUE,
+      status: RealizationStatus.CONTROLLED,
+    },
+    // Add more fake data as needed
+  ];
 
   async getAll(): Promise<Realization[]> {
     return this.realizations;

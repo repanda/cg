@@ -14,10 +14,11 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { RealizationStatus, type Realization, Department, DRAFT_REALAZATION } from './makeData';
+import { type Realization, DRAFT_REALAZATION } from './makeData';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useCreateRealization, useDeleteRealization, useGetRealizations, useUpdateRealization } from './realizationHooks';
+import SendIcon from '@mui/icons-material/SendRounded';
+import { useCreateRealization, useDeleteRealization, useGetRealizations, useSendRealization, useUpdateRealization } from './realizationHooks';
 
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState<
@@ -77,6 +78,8 @@ const Example = () => {
   const { mutateAsync: updateRealization, isPending: isUpdatingRealization } = useUpdateRealization();
   //call DELETE hook
   const { mutateAsync: deleteRealization, isPending: isDeletingRealization } = useDeleteRealization();
+  //call SEND hook
+  const { mutateAsync: sendRealization, isPending: isSendingRealization } = useSendRealization();
 
   //CREATE action
   const handleCreateRealization: MRT_TableOptions<Realization>['onCreatingRowSave'] = async ({
@@ -105,6 +108,12 @@ const Example = () => {
     }
   };
 
+  // Function to handle the button click
+  const handleSendRealization = (row: MRT_Row<Realization>) => {
+    setValidationErrors({});
+    sendRealization(row.original);
+  };
+
   const table = useMaterialReactTable({
     columns,
     data: fetchedRealizations,
@@ -129,12 +138,17 @@ const Example = () => {
     onEditingRowSave: handleSaveRealization,
     renderRowActions: ({ row, table }) => (
       <Box sx={{ display: 'flex', gap: '1rem' }}>
-        <Tooltip title="Edit">
+        <Tooltip title="Envoyer">
+          <IconButton onClick={() => handleSendRealization(row)}>
+            <SendIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Modifier">
           <IconButton onClick={() => table.setEditingRow(row)}>
             <EditIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Delete">
+        <Tooltip title="Supprimer">
           <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
             <DeleteIcon />
           </IconButton>
@@ -155,7 +169,7 @@ const Example = () => {
     ),
     state: {
       isLoading: isLoadingRealizations,
-      isSaving: isCreatingRealization || isUpdatingRealization || isDeletingRealization,
+      isSaving: isCreatingRealization || isUpdatingRealization || isDeletingRealization || isSendingRealization,
       showAlertBanner: isLoadingRealizarionsError,
       showProgressBars: isFetchingRealizations,
     },

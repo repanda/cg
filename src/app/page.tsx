@@ -1,5 +1,5 @@
 import ControllerTable from './controller'
-import ExampleWithProviders from './departmentRealisations'
+import ExampleWithProviders from './realization/departmentRealisations'
 import ManagerTable from './manager'
 
 export default function Home() {

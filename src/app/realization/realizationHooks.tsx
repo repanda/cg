@@ -2,7 +2,7 @@ import {
     useMutation,
     useQueryClient,
   } from '@tanstack/react-query';
-import { Realization, fakeData } from './makeData';
+import { Realization, RealizationStatus, fakeData } from './makeData';
 import { useQuery } from "@tanstack/react-query";
 
 //CREATE hook (post new realization to api or database)
@@ -24,6 +24,7 @@ export function useCreateRealization() {
             ...newRealizationInfo,
             id: (Math.random() + 1).toString(36).substring(7),
             department: 'Logistique',
+            status: RealizationStatus.DRAFT
           },
         ] as Realization[]
       );

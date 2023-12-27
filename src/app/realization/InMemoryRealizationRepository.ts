@@ -1,5 +1,6 @@
 // inMemoryRealizationRepository.ts
-import { Department, Realization, RealizationStatus } from './makeData';
+import { Realization, RealizationStatus } from './makeData';
+import { Department } from "../shared/models";
 import { RealizationRepository } from './realizationRepository';
 
 class InMemoryRealizationRepository implements RealizationRepository {

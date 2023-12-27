@@ -1,11 +1,9 @@
+import { Department } from "../shared/models";
+
 export enum RealizationStatus {
   DRAFT = 'BROUILLON',
   TO_BE_CONTROLLED = 'TO_BE_CONTROLLED',
   CONTROLLED = 'CONTROLLED',
-}
-
-export enum Department {
-  LOGISTIQUE = 'Logistique',
 }
 
 export type Realization = {

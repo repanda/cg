@@ -2,7 +2,8 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { Department, Realization, RealizationStatus } from './makeData';
+import { Realization, RealizationStatus } from './makeData';
+import { Department } from "../shared/models";
 import { useQuery } from "@tanstack/react-query";
 import { RealizationRepository } from './realizationRepository';
 import InMemoryRealizationRepository from './InMemoryRealizationRepository';

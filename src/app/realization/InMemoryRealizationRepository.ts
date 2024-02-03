@@ -11,7 +11,7 @@ class InMemoryRealizationRepository implements RealizationRepository {
       activity: 'Achat',
       month: 12,
       year: 2023,
-      amount: 30_000_000,
+      amount: 4_000,
       department: Department.LOGISTIQUE,
       status: RealizationStatus.DRAFT,
     },

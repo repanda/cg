@@ -43,7 +43,7 @@ const Reports = () => {
       },
       {
         accessorKey: 'frequency',
-        header: 'Fréquence',
+        header: 'Fréquence %',
       }
     ],
     [validationErrors],

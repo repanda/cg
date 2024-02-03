@@ -9,7 +9,7 @@ class InMemoryProvisionRepository implements ProvisionRepository {
     {
       id: '12mu3vo7-hbpnah',
       year: 2023,
-      amount: 30_000_000,
+      amount: 3_000,
       department: Department.LOGISTIQUE,
     },
     {

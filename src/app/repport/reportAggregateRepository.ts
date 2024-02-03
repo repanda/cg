@@ -31,25 +31,20 @@ class ReportAggregateRepository implements ReportRepository {
       const realizations = await realizationRepository.getAll();
       const provisions = await provisionRepository.getAll();
       
+      const provision = provisions[0].amount;
+      const realization = realizations[0].amount;
       const report: Report = {
         id: 'TBD',
         year: 2024,
         month: 3,
         department: Department.LOGISTIQUE,
-        provision: 100,
-        realization: 200,
-        ecart: 100,
-        frequency: 100,
-
-        // realizations[0],
-        // provisions[0]
+        provision,
+        realization,
+        ecart: provision - realization,
+        frequency: provision / realization,
       }
 
-      // const myPromise: Promise<Report> = new Promise((resolve, reject) => {
-      //   // This Promise resolves to a string
-      //   return report;
-      // });  
-    return this.reports;
+    return [report];
   }
 }
 

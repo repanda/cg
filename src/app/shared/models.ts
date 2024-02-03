@@ -1,7 +1,11 @@
 
 export enum Department {
   LOGISTIQUE = 'LOGISTIQUE',
-  TCO = 'TCO'
+  TCO = 'TCO',
+  COORDINATION = 'COORDINATION',
+  APPROVISIONNEMENT = 'APPROVISIONNEMENT',
+  RESOURCES_HUMAINES = 'RESOURCES_HUMAINES',
+  SECURITE_INTERNE = 'SECURITE_INTERNE'
 }
 
 // Helper function to convert enum values into an array of objects

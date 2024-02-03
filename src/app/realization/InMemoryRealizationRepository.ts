@@ -9,17 +9,17 @@ class InMemoryRealizationRepository implements RealizationRepository {
     {
       id: 'lqmu3vo7-hbpnah',
       activity: 'Achat',
-      month: 12,
-      year: 2023,
-      amount: 4_000,
+      month: 2,
+      year: 2024,
+      amount: 1_500,
       department: Department.LOGISTIQUE,
       status: RealizationStatus.DRAFT,
     },
     {
       id: 'lqmu3vo6-hbpnah',
       activity: 'Achat',
-      month: 11,
-      year: 2023,
+      month: 3,
+      year: 2024,
       amount: 10_000_000,
       department: Department.LOGISTIQUE,
       status: RealizationStatus.TO_BE_CONTROLLED,
@@ -38,6 +38,14 @@ class InMemoryRealizationRepository implements RealizationRepository {
 
   async getAll(): Promise<Realization[]> {
     return this.realizations;
+  }
+
+  async getRealizationForDepartmentAndMonth(departmentKey: Department, year: number, month: number): Promise<Realization | undefined> {
+    return this.realizations.find((realization) => 
+      realization.department === departmentKey
+      && realization.year === year
+      && realization.month === month
+    );
   }
 
   async getById(id: string): Promise<Realization | undefined> {

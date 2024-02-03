@@ -8,8 +8,8 @@ class InMemoryProvisionRepository implements ProvisionRepository {
   private provisions: Provision[] = [
     {
       id: '12mu3vo7-hbpnah',
-      year: 2023,
-      amount: 3_000,
+      year: 2024,
+      amount: 12_000,
       department: Department.LOGISTIQUE,
     },
     {
@@ -20,7 +20,7 @@ class InMemoryProvisionRepository implements ProvisionRepository {
     },
     {
       id: '10mu3vo5-hbpnah',
-      year: 2023,
+      year: 2022,
       amount: 15_000_000,
       department: Department.LOGISTIQUE,
     },
@@ -29,6 +29,14 @@ class InMemoryProvisionRepository implements ProvisionRepository {
 
   async getAll(): Promise<Provision[]> {
     return this.provisions;
+  }
+
+  async getProvisionForDepartmentAndMonth(departmentKey: Department, year: number): Promise<Provision | undefined> {
+    return this.provisions
+        .find((provision) => 
+        provision.department === departmentKey
+        && provision.year === year
+        );
   }
 
   async getById(id: string): Promise<Provision | undefined> {

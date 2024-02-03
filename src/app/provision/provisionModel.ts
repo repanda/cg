@@ -7,7 +7,7 @@ export type Provision = {
     amount: number;
 };
   
-export const departments = [
-    'Logistique',
-    'TCO'
-]
+// export const departments = [
+//     'Logistique',
+//     'TC'
+// ]

@@ -8,21 +8,18 @@ class InMemoryProvisionRepository implements ProvisionRepository {
   private provisions: Provision[] = [
     {
       id: '12mu3vo7-hbpnah',
-      month: 12,
       year: 2023,
       amount: 30_000_000,
       department: Department.LOGISTIQUE,
     },
     {
       id: '11mu3vo6-hbpnah',
-      month: 11,
       year: 2023,
       amount: 10_000_000,
       department: Department.LOGISTIQUE,
     },
     {
       id: '10mu3vo5-hbpnah',
-      month: 10,
       year: 2023,
       amount: 15_000_000,
       department: Department.LOGISTIQUE,

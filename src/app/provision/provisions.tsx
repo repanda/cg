@@ -14,7 +14,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { departments, type Provision } from './provisionModel';
+import { type Provision } from './provisionModel';
+import { departmentOptions } from "../shared/models";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/SendRounded';
@@ -37,7 +38,7 @@ const Provisions = () => {
         accessorKey: 'department',
         header: 'Departement',
         editVariant: 'select',
-        editSelectOptions: departments,
+        editSelectOptions: departmentOptions,
         muiEditTextFieldProps: {
           select: true,
           error: !!validationErrors?.state,

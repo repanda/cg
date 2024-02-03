@@ -18,9 +18,9 @@ class InMemoryRealizationRepository implements RealizationRepository {
     {
       id: 'lqmu3vo6-hbpnah',
       activity: 'Achat',
-      month: 3,
+      month: 2,
       year: 2024,
-      amount: 10_000_000,
+      amount: 1_300,
       department: Department.LOGISTIQUE,
       status: RealizationStatus.TO_BE_CONTROLLED,
     },
@@ -45,6 +45,7 @@ class InMemoryRealizationRepository implements RealizationRepository {
       realization.department === departmentKey
       && realization.year === year
       && realization.month === month
+      && realization.status !== RealizationStatus.DRAFT
     );
   }
 

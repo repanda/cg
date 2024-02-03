@@ -14,7 +14,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { type Realization, DRAFT_REALAZATION } from './makeData';
+import { type Realization, DRAFT_REALAZATION, RealizationStatus } from './makeData';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/SendRounded';
@@ -138,11 +138,13 @@ const Example = () => {
     onEditingRowSave: handleSaveRealization,
     renderRowActions: ({ row, table }) => (
       <Box sx={{ display: 'flex', gap: '1rem' }}>
-        <Tooltip title="Envoyer">
-          <IconButton onClick={() => handleSendRealization(row)}>
-            <SendIcon />
-          </IconButton>
-        </Tooltip>
+        {row.original.status === RealizationStatus.DRAFT && (
+          <Tooltip title="Envoyer">
+            <IconButton onClick={() => handleSendRealization(row)}>
+              <SendIcon />
+            </IconButton>
+          </Tooltip>
+        )}
         <Tooltip title="Modifier">
           <IconButton onClick={() => table.setEditingRow(row)}>
             <EditIcon />

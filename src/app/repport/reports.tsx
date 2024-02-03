@@ -14,6 +14,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import EditIcon from '@mui/icons-material/Edit';
+import SendIcon from '@mui/icons-material/SendRounded';
 import { Report } from './reportModel';
 import { useGetReports, useSendReport } from './reportHooks';
 
@@ -25,18 +26,24 @@ const Reports = () => {
   const columns = useMemo<MRT_ColumnDef<Report>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'id',
-        enableEditing: false,
-        size: 80,
-      },
-      {
         accessorKey: 'department',
         header: 'Departement',
       },
       {
-        accessorKey: 'year',
-        header: 'Annee',
+        accessorKey: 'provision',
+        header: 'Prévision',
+      },
+      {
+        accessorKey: 'realization',
+        header: 'Réalization',
+      },
+      {
+        accessorKey: 'ecart',
+        header: 'Ecart',
+      },
+      {
+        accessorKey: 'frequency',
+        header: 'Fréquence',
       }
     ],
     [validationErrors],
@@ -79,10 +86,10 @@ const Reports = () => {
     renderRowActions: ({ row, table }) => (
       <Box sx={{ display: 'flex', gap: '1rem' }}>
         <Tooltip title="Modifier">
-          <IconButton onClick={() => table.setEditingRow(row)}>
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
+            <IconButton onClick={() => handleSendReport(row)}>
+              <EditIcon />
+            </IconButton>
+          </Tooltip>
       </Box>
     ),
     renderTopToolbarCustomActions: ({ table }) => (
@@ -94,7 +101,7 @@ const Reports = () => {
           );
         }}
       >
-        Creer une nouvelle prévision
+        Envoyer le repport mensuel
       </Button>
     ),
     state: {

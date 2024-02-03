@@ -8,4 +8,5 @@ export type Report = {
     provision: number;
     realization: number;
     ecart: number;
+    frequency: number;
 }

@@ -20,6 +20,7 @@ class ReportAggregateRepository implements ReportRepository {
       provision: 100,
       realization: 200,
       ecart: 100,
+      frequency: 100,
     }
   ]
 
@@ -38,6 +39,8 @@ class ReportAggregateRepository implements ReportRepository {
         provision: 100,
         realization: 200,
         ecart: 100,
+        frequency: 100,
+
         // realizations[0],
         // provisions[0]
       }

@@ -1,10 +1,11 @@
-import { Provision } from "../provision/provisionModel";
-import { Realization } from "../realization/makeData";
+import { Department } from "../shared/models";
 
 export type Report = {
     id: string;
     year: number;
     month: number;
-    provisions: Provision[];
-    realizations: Realization[];
+    department: Department;
+    provision: number;
+    realization: number;
+    ecart: number;
 }

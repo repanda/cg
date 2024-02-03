@@ -18,7 +18,6 @@ import { type Provision } from './provisionModel';
 import { departmentOptions } from "../shared/models";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/SendRounded';
 import { useCreateProvision, useDeleteProvision, useGetProvisions, useSendProvision, useUpdateProvision } from './provisionHooks';
 
 const Provisions = () => {

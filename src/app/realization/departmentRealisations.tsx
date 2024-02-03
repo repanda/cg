@@ -145,16 +145,20 @@ const Example = () => {
             </IconButton>
           </Tooltip>
         )}
-        <Tooltip title="Modifier">
-          <IconButton onClick={() => table.setEditingRow(row)}>
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Supprimer">
-          <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        {row.original.status === RealizationStatus.DRAFT && (
+          <Tooltip title="Modifier">
+            <IconButton onClick={() => table.setEditingRow(row)}>
+              <EditIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+        {row.original.status === RealizationStatus.DRAFT && (
+          <Tooltip title="Supprimer">
+            <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+          )}
       </Box>
     ),
     renderTopToolbarCustomActions: ({ table }) => (

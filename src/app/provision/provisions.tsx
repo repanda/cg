@@ -131,11 +131,6 @@ const Provisions = () => {
     onEditingRowSave: handleSaveProvision,
     renderRowActions: ({ row, table }) => (
       <Box sx={{ display: 'flex', gap: '1rem' }}>
-        <Tooltip title="Envoyer">
-          <IconButton onClick={() => handleSendProvision(row)}>
-            <SendIcon />
-          </IconButton>
-        </Tooltip>
         <Tooltip title="Modifier">
           <IconButton onClick={() => table.setEditingRow(row)}>
             <EditIcon />

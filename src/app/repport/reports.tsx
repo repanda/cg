@@ -8,7 +8,7 @@ import {
   type MRT_Row,
   useMaterialReactTable,
 } from 'material-react-table';
-import { Box, Button, IconButton, Tooltip } from '@mui/material';
+import { Box, Button, IconButton, Stack, Tooltip } from '@mui/material';
 import {
   QueryClient,
   QueryClientProvider,
@@ -51,7 +51,7 @@ const Reports = () => {
         size: 200,
             Cell: ({ cell }) => (
               <div>
-                {cell.getValue<number>()?.toLocaleString?.('en-US', {
+                {cell.getValue<number>()?.toLocaleString?.('dzd', {
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 2,
                 })}
@@ -68,7 +68,7 @@ const Reports = () => {
         size: 200,
             Cell: ({ cell }) => (
               <div>
-                {cell.getValue<number>()?.toLocaleString?.('en-US', {
+                {cell.getValue<number>()?.toLocaleString?.('dzd', {
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 2,
                 })}
@@ -79,13 +79,85 @@ const Reports = () => {
     [validationErrors],
   );
 
-  //call READ hook
-  const {
-    data: fetchedReports = [],
-    isError: isLoadingReportsError,
-    isFetching: isFetchingReports,
-    isLoading: isLoadingReports,
-  } = useGetReports();
+ //call READ hook
+ const {
+  data: fetchedReports = [],
+  isError: isLoadingReportsError,
+  isFetching: isFetchingReports,
+  isLoading: isLoadingReports,
+} = useGetReports();
+
+const sumPreviousYearRealization = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.previousYearRealization || 0), 0),
+  [fetchedReports]
+);
+
+const sumProvision = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.provision || 0), 0),
+  [fetchedReports]
+);
+
+const sumRealization = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.realization || 0), 0),
+  [fetchedReports]
+);
+
+const sumEcart = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.ecart || 0), 0),
+  [fetchedReports]
+);
+
+const sumFrequency = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.frequency || 0), 0),
+  [fetchedReports]
+);
+
+const sumEcartEvolution = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.ecartEvolution || 0), 0),
+  [fetchedReports]
+);
+
+const sumFrequencyEvolution = useMemo(
+  () => fetchedReports.reduce((acc, curr) => acc + (curr.frequencyEvolution || 0), 0),
+  [fetchedReports]
+);
+
+
+
+// Add more sum calculations for other columns if needed
+
+const columnsWithFooter = useMemo(() => {
+  const columnsWithFooter = [...columns];
+
+  // Add a footer to each column with a sum calculation
+  columnsWithFooter.forEach((column) => {
+    if (column.accessorKey === 'previousYearRealization') {
+      column.footer = sumPreviousYearRealization.toLocaleString('dzd');
+    } else if (column.accessorKey === 'provision') {
+      column.footer = sumProvision.toLocaleString('dzd');
+    } else if (column.accessorKey === 'realization') {
+      column.footer = sumRealization.toLocaleString('dzd');
+    } else if (column.accessorKey === 'ecart') {
+      column.footer = sumEcart.toLocaleString('dzd');
+    } else if (column.accessorKey === 'frequency') {
+      column.footer = sumFrequency.toLocaleString?.('dzd', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+      });
+    } else if (column.accessorKey === 'ecartEvolution') {
+      column.footer = sumEcartEvolution.toLocaleString('dzd');
+    } else if (column.accessorKey === 'frequencyEvolution') {
+      column.footer = sumFrequencyEvolution.toLocaleString?.('dzd', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+      });
+    }
+    // Add more conditions for other columns if needed
+  });
+
+  return columnsWithFooter;
+}, [columns, sumPreviousYearRealization, sumProvision, sumRealization, sumEcart]);
+
   //call SEND hook
   const { mutateAsync: sendReport, isPending: isSendingReport } = useSendReport();
 

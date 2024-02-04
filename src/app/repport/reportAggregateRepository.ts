@@ -12,7 +12,7 @@ const realizationRepository: RealizationRepository= new InMemoryRealizationRepos
 class ReportAggregateRepository implements ReportRepository {
 
   async getLastReport(): Promise<Report[]> {
-    const monthlyReports: Report[] = Object.values(Department).map(async (departmentKey) => {
+    const monthlyReports = Object.values(Department).map(async (departmentKey) => {
       try {
         const year = 2024;
         const month = 2;
@@ -21,7 +21,7 @@ class ReportAggregateRepository implements ReportRepository {
         const provision = await provisionRepository.getProvisionForDepartmentAndMonth(departmentKey, year);
         const realization = await realizationRepository.getRealizationForDepartmentAndMonth(departmentKey, year, month);
 
-        const provisionAmount = provision?.amount /12;
+        const provisionAmount = executeSafely(()=> provision!.amount / 12);
         const realizationAmount = realization?.amount;
         // Create the report object
         const report: Report = {
@@ -31,14 +31,14 @@ class ReportAggregateRepository implements ReportRepository {
           department: Department[departmentKey as keyof typeof Department], // Convert key to enum label
           provision: provisionAmount,
           realization: realizationAmount,
-          ecart: provisionAmount - realizationAmount,
-          frequency: realizationAmount !== 0 ? provisionAmount / realizationAmount : 0,
+          ecart: executeSafely(()=> provisionAmount - realizationAmount!) ,
+          frequency: realizationAmount !== 0 ? provisionAmount / realizationAmount! : 0,
         };
     
         return report;
       } catch (error) {
         console.error(`Error fetching report for ${departmentKey}:`, error);
-        return undefined;
+        return [];
       }
     });
     
@@ -47,6 +47,16 @@ class ReportAggregateRepository implements ReportRepository {
     
     // Now allReports contains an array of reports for each department
     return allReports;
+  }
+}
+
+function executeSafely(func: any) {
+  try {
+    return func();
+  } catch (error) {
+    // Log the error if needed
+    console.warn('Warn:', error);
+    return undefined;
   }
 }
 

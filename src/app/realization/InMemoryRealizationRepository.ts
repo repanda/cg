@@ -4,7 +4,6 @@ import { Department } from "../shared/models";
 import { RealizationRepository } from './realizationRepository';
 
 class InMemoryRealizationRepository implements RealizationRepository {
- // private realizations: Realization[] = [];
   private realizations: Realization[] = [
     {
       id: 'lqmu3vo7-hbpnah',

@@ -30,6 +30,10 @@ const Reports = () => {
         header: 'Departement',
       },
       {
+        accessorKey: 'previousYearRealization',
+        header: 'Prévision anneé précédente',
+      },
+      {
         accessorKey: 'provision',
         header: 'Prévision',
       },

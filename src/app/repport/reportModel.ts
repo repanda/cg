@@ -5,6 +5,7 @@ export type Report = {
     year: number;
     month: number;
     department: Department;
+    previousYearRealization: number | undefined;
     provision: number | undefined;
     realization: number | undefined;
     ecart: number | undefined;

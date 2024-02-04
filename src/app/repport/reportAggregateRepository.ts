@@ -20,12 +20,16 @@ class ReportAggregateRepository implements ReportRepository {
         // Call your repository with the current department key, year, and month
         const provision = await provisionRepository.getProvisionForDepartmentAndMonth(departmentKey, year);
         const realization = await realizationRepository.getRealizationForDepartmentAndMonth(departmentKey, year, month);
+        const previousYearRealization = await realizationRepository.getRealizationForDepartmentAndMonth(departmentKey, year-1, month);
 
         const provisionAmount = executeSafely(()=> provision!.amount / 12);
         const realizationAmount = realization?.amount;
+        const previousRealizationAmout = previousYearRealization?.amount;
+
         // Create the report object
         const report: Report = {
           id: 'TBD',
+          previousYearRealization: previousRealizationAmout,
           year,
           month,
           department: Department[departmentKey as keyof typeof Department], // Convert key to enum label

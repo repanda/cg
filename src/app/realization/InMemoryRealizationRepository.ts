@@ -26,9 +26,9 @@ class InMemoryRealizationRepository implements RealizationRepository {
     {
       id: 'lqmu3vo5-hbpnah',
       activity: 'Achat',
-      month: 10,
+      month: 2,
       year: 2023,
-      amount: 15_000_000,
+      amount: 1_100,
       department: Department.LOGISTIQUE,
       status: RealizationStatus.CONTROLLED,
     },

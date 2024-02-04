@@ -1,4 +1,4 @@
-import Layout from '../app/layout';
+import Layout from '@/app/layout';
 import RapportProviders from '@/app/repport/reports';
 
 const ReportPage = () => {

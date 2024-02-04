@@ -1,26 +1,24 @@
-import Link from 'next/link';
-import Layout from '@/app/layout';
+import React, { useState, useEffect } from 'react';
 
-const Home = () => {
+import Login from './login';
+import Dashboard from './Dashboard';
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    setIsAuthenticated(JSON.parse(localStorage.getItem('is_authenticated')));
+  }, []);
+
   return (
-    <Layout>
-      <section>
-        <Link href="/realizations">
-          Department Realizations
-        </Link>
-      </section>
-      <section>
-        <Link href="/provisions">
-          Provisions
-        </Link>
-      </section>
-      <section>
-        <Link href="/reports">
-          Reports
-        </Link>
-      </section>
-    </Layout>
+    <>
+      {isAuthenticated ? (
+        <Dashboard setIsAuthenticated={setIsAuthenticated} />
+      ) : (
+        <Login setIsAuthenticated={setIsAuthenticated} />
+      )}
+    </>
   );
 };
 
-export default Home;
+export default App;

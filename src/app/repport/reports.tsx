@@ -48,6 +48,15 @@ const Reports = () => {
       {
         accessorKey: 'frequency',
         header: 'Fréquence %',
+        size: 200,
+            Cell: ({ cell }) => (
+              <div>
+                {cell.getValue<number>()?.toLocaleString?.('en-US', {
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 2,
+                })}
+              </div>
+            )
       },
       {
         accessorKey: 'ecartEvolution',
@@ -56,6 +65,15 @@ const Reports = () => {
       {
         accessorKey: 'frequencyEvolution',
         header: 'Fréquence anneé précédente %',
+        size: 200,
+            Cell: ({ cell }) => (
+              <div>
+                {cell.getValue<number>()?.toLocaleString?.('en-US', {
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 2,
+                })}
+              </div>
+            )
       }
     ],
     [validationErrors],

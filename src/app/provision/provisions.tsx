@@ -144,7 +144,7 @@ const Provisions = () => {
     ),
     renderTopToolbarCustomActions: ({ table }) => (
       <Button
-        variant="contained"
+        variant="outlined"
         onClick={() => {
           table.setCreatingRow( // Set default value for status to DRAFT
             createRow(table)

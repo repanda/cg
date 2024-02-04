@@ -196,7 +196,7 @@ const columnsWithFooter = useMemo(() => {
     ),
     renderTopToolbarCustomActions: ({ table }) => (
       <Button
-        variant="contained"
+        variant="outlined"
         onClick={() => {
           table.setCreatingRow(
             createRow(table)

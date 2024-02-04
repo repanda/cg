@@ -31,7 +31,7 @@ const Reports = () => {
       },
       {
         accessorKey: 'previousYearRealization',
-        header: 'Prévision anneé précédente',
+        header: 'Réalization anneé précédente',
       },
       {
         accessorKey: 'provision',
@@ -48,6 +48,14 @@ const Reports = () => {
       {
         accessorKey: 'frequency',
         header: 'Fréquence %',
+      },
+      {
+        accessorKey: 'ecartEvolution',
+        header: 'Ecart anneé précédente',
+      },
+      {
+        accessorKey: 'frequencyEvolution',
+        header: 'Fréquence anneé précédente %',
       }
     ],
     [validationErrors],

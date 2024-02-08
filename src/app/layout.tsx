@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from './header'
 
@@ -9,13 +8,16 @@ const metadata: Metadata = {
 }
 
 export default function RootLayout({
+  setIsAuthenticated,
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
     <div>
-      <Header />
+      <Header
+            setIsAuthenticated={setIsAuthenticated}
+          />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         {children}
       </main>

@@ -7,7 +7,7 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    setIsAuthenticated(JSON.parse(localStorage.getItem('is_authenticated')));
+    setIsAuthenticated(JSON.parse(localStorage.getItem('is_authenticated') || "false"));
   }, []);
 
   return (

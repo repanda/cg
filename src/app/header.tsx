@@ -1,6 +1,7 @@
+import Logout from '../pages/logout';
 import Link from 'next/link';
 
-const Header = () => {
+const Header = ({ setIsAuthenticated }) => {
   return (
     <header>
       <nav>
@@ -22,6 +23,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      <Logout setIsAuthenticated={setIsAuthenticated} />
     </header>
   );
 };

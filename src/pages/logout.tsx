@@ -3,7 +3,11 @@ import { IconButton } from '@mui/material';
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const Logout = ({ setIsAuthenticated }) => {
+type Props = {
+  setIsAuthenticated: (isAuthenticated: boolean) => boolean;
+};
+
+const Logout = (props: Props) => {
   const handleLogout = () => {
     Swal.fire({
       icon: 'question',
@@ -21,7 +25,7 @@ const Logout = ({ setIsAuthenticated }) => {
           },
           willClose: () => {
             localStorage.setItem('is_authenticated', false);
-            setIsAuthenticated(false);
+            props.setIsAuthenticated(false);
           },
         });
       }

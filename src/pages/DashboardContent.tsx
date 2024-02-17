@@ -135,7 +135,7 @@ export default function Dashboard({ title ,setIsAuthenticated, content: ContentC
             >
               {title}
             </Typography>
-            <Logout setIsAuthenticated={false} />
+            <Logout setIsAuthenticated={setIsAuthenticated} />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

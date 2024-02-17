@@ -1,12 +1,8 @@
-import Layout from '@/app/layout';
-import RapportProviders from '@/app/repport/reports';
+import RapportProviders from "@/app/repport/reports";
+import Dashboard from "./DashboardContent";
 
-const ReportPage = () => {
-  return (
-    <Layout>
-      <RapportProviders />
-    </Layout>
-  );
-};
-
-export default ReportPage;
+export default function ReportPage({ setIsAuthenticated }) {
+    return (
+        <Dashboard setIsAuthenticated={setIsAuthenticated} content={() => <RapportProviders/>} />
+    )
+}

@@ -1,12 +1,9 @@
-import Layout from '../app/layout';
 import ExampleWithProviders from '../app/realization/departmentRealisations';
+import Dashboard from './DashboardContent';
 
-const DepartmentRealizations = () => {
+export default function DepartmentRealizations({ setIsAuthenticated }) {
+
   return (
-    <Layout>
-      <ExampleWithProviders />
-    </Layout>
+    <Dashboard setIsAuthenticated={setIsAuthenticated} content={() => <ExampleWithProviders/>} />
   );
 };
-
-export default DepartmentRealizations;

@@ -1,12 +1,8 @@
 import ProvisionProviders from '@/app/provision/provisions';
-import Layout from '../app/layout';
+import Dashboard from './DashboardContent';
 
-const ProvisionPage = () => {
+export default function ProvisionPage({ setIsAuthenticated }) {
   return (
-    <Layout>
-      <ProvisionProviders />
-    </Layout>
+    <Dashboard setIsAuthenticated={setIsAuthenticated} content={() => <ProvisionProviders/>} />
   );
 };
-
-export default ProvisionPage;

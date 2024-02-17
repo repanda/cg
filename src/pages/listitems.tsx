@@ -6,37 +6,44 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
+import Link from 'next/link'; // Import Link from Next.js
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton href="/">
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
+    <Link href="/" passHref>
+      <ListItemButton component="a">
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+    </Link>
 
-    <ListItemButton href="/reports">
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
+    <Link href="/reports" passHref>
+      <ListItemButton component="a">
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Reports" />
+      </ListItemButton>
+    </Link>
 
-    <ListItemButton href="/realizations">
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Realizations" />
-    </ListItemButton>
+    <Link href="/realizations" passHref>
+      <ListItemButton component="a">
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Realizations" />
+      </ListItemButton>
+    </Link>
 
-    <ListItemButton href="/provisions">
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Provisions" />
-    </ListItemButton>
-
+    <Link href="/provisions" passHref>
+      <ListItemButton component="a">
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Provisions" />
+      </ListItemButton>
+    </Link>
   </React.Fragment>
 );

@@ -1,3 +1,5 @@
+import { LogoutOutlined } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import React from 'react';
 import Swal from 'sweetalert2';
 
@@ -27,13 +29,9 @@ const Logout = ({ setIsAuthenticated }) => {
   };
 
   return (
-    <button
-      style={{ marginLeft: '12px' }}
-      className="muted-button"
-      onClick={handleLogout}
-    >
-      Logout
-    </button>
+      <IconButton color="inherit" onClick={handleLogout} title='Logout'>
+        <LogoutOutlined/>
+      </IconButton>
   );
 };
 

@@ -18,6 +18,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems } from './listitems';
 import Logout from './logout';
+import { LogoutOutlined } from '@mui/icons-material';
 
 const drawerWidth: number = 240;
 
@@ -134,11 +135,7 @@ export default function Dashboard({ setIsAuthenticated, content: ContentComponen
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Logout setIsAuthenticated={false} />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -157,8 +154,6 @@ export default function Dashboard({ setIsAuthenticated, content: ContentComponen
           <Divider />
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            <Logout setIsAuthenticated={false} />
           </List>
         </Drawer>
         <DashboardContent content={ContentComponent} />

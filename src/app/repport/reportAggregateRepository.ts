@@ -37,8 +37,8 @@ class ReportAggregateRepository implements ReportRepository {
           realization: realizationAmount,
           ecart: executeSafely(()=> provisionAmount - realizationAmount!) ,
           frequency: realizationAmount !== 0 ? provisionAmount / realizationAmount! : 0,
-          ecartEvolution: executeSafely(()=> previousRealizationAmout - realizationAmount!) ,
-          frequencyEvolution: realizationAmount !== 0 ? previousRealizationAmout / realizationAmount! : 0,
+          ecartEvolution: executeSafely(()=> previousRealizationAmout! - realizationAmount!) ,
+          frequencyEvolution: realizationAmount !== 0 ? previousRealizationAmout! / realizationAmount! : 0,
         };
     
         return report;

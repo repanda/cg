@@ -4,6 +4,6 @@ import Dashboard from './DashboardContent';
 export default function DepartmentRealizations({ setIsAuthenticated }) {
 
   return (
-    <Dashboard setIsAuthenticated={setIsAuthenticated} content={() => <ExampleWithProviders/>} />
+    <Dashboard  title='Realisation' setIsAuthenticated={setIsAuthenticated} content={() => <ExampleWithProviders/>} />
   );
 };

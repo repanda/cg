@@ -98,7 +98,7 @@ const DashboardContent = ({ content: ContentComponent }) => (
   </Box>
 );
 
-export default function Dashboard({ setIsAuthenticated, content: ContentComponent }) {
+export default function Dashboard({ title ,setIsAuthenticated, content: ContentComponent }) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -133,7 +133,7 @@ export default function Dashboard({ setIsAuthenticated, content: ContentComponen
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              {title}
             </Typography>
             <Logout setIsAuthenticated={false} />
           </Toolbar>

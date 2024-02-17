@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       {isAuthenticated ? (
-        <Dashboard setIsAuthenticated={setIsAuthenticated} content={() => <Orders />} />
+        <Dashboard title='Report' setIsAuthenticated={setIsAuthenticated} content={() => <Orders />} />
       ) : (
         <Login setIsAuthenticated={setIsAuthenticated} />
       )}
